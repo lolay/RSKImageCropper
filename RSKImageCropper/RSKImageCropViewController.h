@@ -192,6 +192,12 @@ typedef NS_ENUM(NSUInteger, RSKImageCropMode) {
  */
 - (BOOL)isPortraitInterfaceOrientation;
 
+- (void)updateMaskRect;
+
+- (void)updateMaskPath;
+
+- (void)reset:(BOOL)animated;
+
 @end
 
 /**
