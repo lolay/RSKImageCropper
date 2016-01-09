@@ -452,10 +452,14 @@ static const CGFloat kLayoutImageScrollViewAnimationDuration = 0.25;
 
 - (void)setOriginalImage:(UIImage *)originalImage
 {
+    [self setOriginalImage:originalImage withReset:YES];
+}
+
+- (void)setOriginalImage:(UIImage *)originalImage withReset:(BOOL)reset {
     if (![_originalImage isEqual:originalImage]) {
         _originalImage = originalImage;
         if (self.isViewLoaded && self.view.window) {
-            [self displayImage];
+            [self displayImageWithReset:reset];
         }
     }
 }
@@ -636,9 +640,17 @@ static const CGFloat kLayoutImageScrollViewAnimationDuration = 0.25;
 
 - (void)displayImage
 {
+    [self displayImageWithReset:YES];
+}
+
+- (void)displayImageWithReset:(BOOL) reset {
     if (self.originalImage) {
-        [self.imageScrollView displayImage:self.originalImage];
-        [self reset:NO];
+        if (reset) {
+            [self.imageScrollView displayImage:self.originalImage];
+            [self reset:NO];
+        } else {
+            self.imageScrollView.zoomView.image = self.originalImage;
+        }
     }
 }
 

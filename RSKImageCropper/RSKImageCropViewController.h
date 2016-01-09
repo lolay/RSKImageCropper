@@ -198,6 +198,8 @@ typedef NS_ENUM(NSUInteger, RSKImageCropMode) {
 
 - (void)reset:(BOOL)animated;
 
+- (void)setOriginalImage:(UIImage * _Nonnull) originalImage withReset:(BOOL) reset;
+
 @end
 
 /**
